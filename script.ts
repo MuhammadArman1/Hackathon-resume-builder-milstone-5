@@ -67,7 +67,6 @@ function shareurl() {
     if (navigator.share) {
         navigator.share({
             title: document.title,
-            text: 'Check this out!',
             url: url
         })
         .then(() => console.log('Successful share'))
