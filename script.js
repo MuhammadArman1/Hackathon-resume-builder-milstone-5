@@ -50,7 +50,28 @@ function editResume() {
     }
 }
 (_b = document.getElementById("print-resume")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", function () {
+    var h1 = document.querySelector("h1");
+    var h2 = document.querySelector("h2");
+    var hiddenElements = document.getElementById("sharelink");
+    if (h1) {
+        h1.style.display = "none";
+    }
+    if (h2) {
+        h2.style.display = "none";
+    }
+    if (hiddenElements) {
+        hiddenElements.style.display = "none";
+    }
     window.print();
+    if (h1) {
+        h1.style.display = "";
+    }
+    if (h2) {
+        h2.style.display = "";
+    }
+    if (hiddenElements) {
+        hiddenElements.style.display = "";
+    }
 });
 function shareurl() {
     var url = window.location.href;
@@ -58,11 +79,11 @@ function shareurl() {
         navigator.share({
             title: document.title,
             url: url
-        })
-            .then(function () { return console.log('Successful share'); })
-            .catch(function (err) { return console.error('Error sharing:', err); });
+        });
     }
-    else {
-        alert('Web Share API is not supported in your browser.');
-    }
+    //     .then(() => console.log('Successful share'))
+    //     .catch(err => console.error('Error sharing:', err));
+    // } else {
+    //     alert('Web Share API is not supported in your browser.');
+    // }
 }

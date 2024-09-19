@@ -2,15 +2,15 @@ function toggleskill(){
     const toggleButton = document.getElementById("toggle-button") as HTMLButtonElement
     const toggleskill = document.getElementById("toggle-skill") as HTMLElement
     
-        if (toggleskill.style.display === 'none') {
-            toggleskill.style.display = 'block';
-            toggleButton.textContent = "Hide Skill"
-        } else {
-            toggleskill.style.display = 'none';
-            toggleButton.textContent = "Show Skill"
+    if (toggleskill.style.display === 'none') {
+        toggleskill.style.display = 'block';
+        toggleButton.textContent = "Hide Skill"
+    } else {
+        toggleskill.style.display = 'none';
+        toggleButton.textContent = "Show Skill"
 
-        }
-        }
+    }
+}
     
 document.getElementById('resume-form')?.addEventListener('submit', function(event) {
     event.preventDefault(); 
@@ -42,7 +42,6 @@ document.getElementById('resume-form')?.addEventListener('submit', function(even
     const resumeForm = document.getElementById("resume-form")
     const ResumePreview = document.getElementById("resume-preview") 
 
-
     if(resumeForm && ResumePreview){
         resumeForm.style.display = "none";
         ResumePreview.style.display = "block";
@@ -52,14 +51,39 @@ document.getElementById('resume-form')?.addEventListener('submit', function(even
 function editResume(): void {
     const resumeForm = document.getElementById("resume-form")
     const ResumePreview = document.getElementById("resume-preview") 
+
     if (resumeForm && ResumePreview) {
         resumeForm.style.display = 'block';
         ResumePreview.style.display = 'none';
     }
 }
 
-document.getElementById("print-resume")?.addEventListener("click", function(){
-   window.print()
+document.getElementById("print-resume")?.addEventListener("click", function() {
+    const h1 = document.querySelector("h1");
+    const h2 = document.querySelector("h2");
+    const hiddenElements = document.getElementById("sharelink")
+
+    if (h1) {
+        h1.style.display = "none"; 
+    }
+    if(h2){
+        h2.style.display = "none"; 
+    }
+    if(hiddenElements){
+        hiddenElements.style.display = "none"
+    }
+
+    window.print(); 
+
+    if (h1) {
+        h1.style.display = ""; 
+    }
+    if(h2){
+        h2.style.display = "";
+    }
+    if(hiddenElements){
+        hiddenElements.style.display = ""
+    }
 });
 
 function shareurl() {
@@ -69,9 +93,5 @@ function shareurl() {
             title: document.title,
             url: url
         })
-        .then(() => console.log('Successful share'))
-        .catch(err => console.error('Error sharing:', err));
-    } else {
-        alert('Web Share API is not supported in your browser.');
     }
 }
